@@ -14,6 +14,7 @@ import secrets
 from flask_migrate import Migrate
 from dotenv import load_dotenv
 
+
 def create_app(db_url=None):
     app = Flask(__name__)
     load_dotenv()
