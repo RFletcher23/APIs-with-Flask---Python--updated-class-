@@ -12,10 +12,11 @@ import models
 import os
 import secrets 
 from flask_migrate import Migrate
-#from blocklist import BLOCKLIST
+from dotenv import load_dotenv
 
 def create_app(db_url=None):
     app = Flask(__name__)
+    load_dotenv()
 
 #register bluebprints (store.py & item.py files)
 
