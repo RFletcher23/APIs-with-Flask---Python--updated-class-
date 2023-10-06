@@ -1,4 +1,6 @@
 from flask.views import MethodView
+import os
+import requests
 from flask_smorest import Blueprint, abort
 from passlib.hash import pbkdf2_sha256 #This is a hashing algorithm that is used to hash passwords
 from db import db
@@ -14,6 +16,16 @@ from flask_jwt_extended import (
 )
 
 blp = Blueprint("Users", "users", description="Operations on users")
+
+def send_simple_message(to, subject, body):
+    domain = os.getenv("MAILGUN_DOMAIN")
+    return requests.post(
+        f"https://api.mailgun.net/v3/{domain}/messages",
+        auth=("api", os.getenv("MAILGUN_API_KEY")),
+        data={"from": "Rachael Fletcher <mailgun@{domain}}>",
+            "to": [to],
+            "subject": subject,
+            "text": body})
 
 @blp.route("/register")
 class UserRegister(MethodView):
