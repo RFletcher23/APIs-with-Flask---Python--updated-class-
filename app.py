@@ -20,7 +20,6 @@ def create_app(db_url=None):
     load_dotenv()
 
 #register bluebprints (store.py & item.py files)
-
 #This says if there is an exception that occurs hidden inside an extention of Flask, propagate it into the main app so we can see it.
     app.config["PROPAGATE_EXCEPTIONS"] = True
     # Smorest configuration - title and version that will be in the documentation. Also the open API version. Open API is a standard for API documentation.
